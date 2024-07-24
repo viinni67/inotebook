@@ -81,7 +81,7 @@ const NotesCom = () => {
             </div>
             <div className="modal-footer " >
               <button type="button" className="btn btn-secondary"   data-bs-toggle="modal" data-bs-target="#exampleModal" data-dismiss="modal">Close</button>
-              <button type="button"  disabled={note.title.length<5 || note.description.length>5} className="btn btn-primary" onClick={handleonClick} data-bs-toggle="modal" data-bs-target="#exampleModal" >Save changes</button>
+              <button type="button"   className="btn btn-primary" onClick={handleonClick} data-bs-toggle="modal" data-bs-target="#exampleModal" >Save changes</button>
             </div>
           </div>
         </div>
