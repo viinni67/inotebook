@@ -8,7 +8,7 @@ const ItemNotes = (props) => {
  
   return (
  
-    <div className='col-md-3'>
+    <div className='col-md-3  p-1 rounded shadow'>
         <div class="card my-3">
         <div class="card-body">
             <h5 class="card-title">{note.title}</h5>

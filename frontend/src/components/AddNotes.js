@@ -22,22 +22,22 @@ const AddNotes = () => {
 
   return (
       <div>
-          <div>
-              <h2>add a note</h2>
+          <div className='border p-4 rounded shadow'>
+              <h3 className='container '>Add your Note :)</h3>
               <form>
                   <div class="form-group my-3">
                       <label htmlfor="title">Title</label>
-                      <input type="text" class="form-control" id="title" placeholder="Example input" name='title' onChange={Change}/>
+                      <input type="text" class="form-control" id="title" placeholder="Example title eg: my first day etc" name='title' onChange={Change}/>
                   </div>
                   <div class="form-group">
                     <label htmlfor="description">content </label>
-                    <input type="text" className="form-control" id="description" placeholder="Another input" name='description' onChange={Change}/>
+                    <input type="text" className="form-control" id="description" placeholder="your decription" name='description' onChange={Change}/>
                 </div>
                 <div class="form-group">
                     <label htmlfor="description">tag </label>
-                    <input type="text" className="form-control" id="tag" placeholder="Another input" name='tag' onChange={Change}/>
+                    <input type="text" className="form-control" id="tag" placeholder="Add your tag line eg :love ,general" name='tag' onChange={Change}/>
                 </div>
-                <button type='submit' className='btn btn-primary my-2' onClick={handleClick} id="checkAllTopicCheckBoxes">Add note </button>
+                <button type='submit' className='btn btn-primary my-4 container' onClick={handleClick} id="checkAllTopicCheckBoxes">Add note </button>
             </form>
             <h3>your notes : </h3>
         </div>

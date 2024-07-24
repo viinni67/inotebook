@@ -12,10 +12,12 @@ const NotesCom = () => {
   const { notes, getNotes,update} = context;
   const [note, setnote] = useState({ id:"",title: "", description: "", tag: "" })
 
-  const handleonClick = () => {
+  const handleonClick = (e) => {
+    e.preventDefault();
     console.log('clicking');
    
    update(note.id,note.title,note.description,note.tag);
+   setnote({id:'',title:'',tag:''})
 
     // Addnote(note.title,note.description,note.tag);
 
@@ -47,12 +49,10 @@ const NotesCom = () => {
   return (
     <>
       <AddNotes />
-      {/* <button ref={ref} type="button" className="btn btn-primary d-none" data-toggle="modal" data-target="#exampleModal">
-        launch
-      </button> */}
+      
 
 
-      <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div className="modal fade border" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">
@@ -61,19 +61,19 @@ const NotesCom = () => {
                 <span aria-hidden="true">&times;</span>
               </button> */}
             </div>
-            <div className="modal-body">
-              <form>
+            <div className='border p-4 rounded shadow'>
+              <form >
                 <div class="form-group my-3"> 
                   <label htmlFor="title">Title</label>
-                  <input type="text" class="form-control" id="etitle" placeholder="Example input" name='etitle' defaultValue={note.title} onChange={Change} />
+                  <input type="text" class="form-control" id="title" placeholder="Example input" name='title' defaultValue={note.title} onChange={Change} />
                 </div>
                 <div class="form-group">
                   <label htmlFor="description">content </label>
-                  <input type="text" className="form-control" id="edescription" placeholder="Another input" name='edescription'  defaultValue={note.description} onChange={Change} />
+                  <input type="text" className="form-control" id="description" placeholder="Another input" name='description'  defaultValue={note.description} onChange={Change} />
                 </div>
                 <div class="form-group">
                   <label htmlFor="description">tag </label>
-                  <input type="text" className="form-control" id="etag" placeholder="Another input" name='etag'  defaultValue={note.tag} onChange={Change} />
+                  <input type="text" className="form-control" id="tag" placeholder="Another input" name='tag'  defaultValue={note.tag} onChange={Change} />
                 </div>
                 
               </form>
@@ -81,7 +81,7 @@ const NotesCom = () => {
             </div>
             <div className="modal-footer " >
               <button type="button" className="btn btn-secondary"   data-bs-toggle="modal" data-bs-target="#exampleModal" data-dismiss="modal">Close</button>
-              <button type="button"  disabled={note.title.length<5 || note.description.length<5} className="btn btn-primary" onClick={handleonClick} data-bs-toggle="modal" data-bs-target="#exampleModal" >Save changes</button>
+              <button type="button"  disabled={note.title.length<5 || note.description.length>5} className="btn btn-primary" onClick={handleonClick} data-bs-toggle="modal" data-bs-target="#exampleModal" >Save changes</button>
             </div>
           </div>
         </div>

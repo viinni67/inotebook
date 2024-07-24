@@ -9,18 +9,12 @@ import{
 } from  'react-router-dom';
 import { Switch } from 'react-router-dom';
 import NoteState from './context/NoteState';
-import Alert from './components/Alert';
-import { useState } from 'react';
+
 import Login from './components/Login';
 import Signup from './components/Signup';
-
+//import 'App.css' 
 
 function App() {
-   const [Alt,setAlt]=useState("hello")
-   const showAlert=()=>{
-    
-   }
-
   return (
     <>
       <NoteState>

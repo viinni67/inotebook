@@ -45,25 +45,43 @@ router.post('/addnote', fetchuser, [
     })
 
 //route 3  POST for manipulation of existing notes in server "/api/notes/editNotes"(login required)
-router.put('/editNotes/:id',fetchuser, async (req,res)=>{
-    const {title,description,tag}= req.body;
-    // create a new note obj
-    const new_Note={};
-    if(title){new_Note.title=title};
-    if(description){new_Note.description=description};
-    if(tag){new_Note.tag=tag};
-//updating the note 
-    let note= await Note.findById(req.params.id)
-    //validating
-    if(!note){ return res.status(404).send({error:"inavlid id or not found "})};
-//validating
-    if( note.user.toString()!== req.user.id ){return res.status(401).send("not allowed"); };
-
-    note = await Note.findByIdAndUpdate(req.params.id,{$set:new_Note},{new:true})
-    res.json({note})
-
-
-})
+router.put('/editNotes/:id', fetchuser, async (req, res) => {
+    try {
+     const { title, description, tag } = req.body;
+     // create a new note obj
+     const new_Note = {};
+ 
+     if (title) { new_Note.title = title };
+     if (description) { new_Note.description = description };
+     if (tag) { new_Note.tag = tag };
+     
+     console.log(req.params.id);
+     //updating the note 
+     let note = await Note.findById(req.params.id)
+     //validating
+    
+     if (!note) { return res.status(404).send({ error: "inavlid id or not found " }) };
+     //validating
+     if (note.user.toString() !== req.user.id) { return res.status(401).send("not allowed"); };
+ 
+     note = await Note.findByIdAndUpdate(
+         req.params.id,
+         { $set: new_Note },
+         { new: true, runValidators: true }
+     );
+ 
+     // Logging the updated note
+     
+ 
+     res.json({ note });
+ 
+     
+    } catch (error) {
+      console.log(error);
+      res.json("internal server error")
+    }
+ 
+ }) 
 //route 4  DELETE for manipulation of existing notes in server "/api/notes/deleteNotes/:id"(login required)
 router.delete('/deleteNotes/:id',fetchuser,async (req,res)=>{
     let note= await Note.findById(req.params.id)
